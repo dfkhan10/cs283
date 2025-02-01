@@ -10,12 +10,16 @@ setup_file() {
 
 @test "Check if database is empty to start" {
     run ./sdbsc -p
+    echo "Exit status: $status"  # Print the exit status
+    echo "Output: $output"       # Print the output captured from the program
     [ "$status" -eq 0 ]
     [ "$output" = "Database contains no student records." ]
 }
 
 @test "Add a student 1 to db" {
     run ./sdbsc -a 1      john doe 345
+    echo "Exit status: $status"  # Print the exit status for debugging
+    echo "Output: $output"       # Print the output for debugging
     [ "$status" -eq 0 ]
     [ "${lines[0]}" = "Student 1 added to database." ]
 }
